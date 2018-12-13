@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ReQuest.Models.Request>
+
+
+@if (this.User.IsInRole("Admin"))
+{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Request</h2>
+
+<a href="/Request/Create" class="btn btn-success" role="button">Create New Request</a>
+
+<table class="table">
+    <tr>
+        <th>Activity Name</th>
+        <th>Description</th>
+        <th>Room</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr class="cursor-pointer" data-href="/Request/Details/@item.RequestId">
+            <td class="clickable-col">
+                @item.RequestName
+            </td>
+            <td class="clickable-col">
+                @item.RequestDescription
+            </td>
+            <td class="clickable-col">
+                @item.RoomNumber
+            </td>
+            <td class="clickable-col">
+                @item.RequestStartTime
+            </td>
+            <td class="clickable-col">
+                @item.RequestEndTime
+            </td>
+            <td class="clickable-col">
+                @item.RequestStatus
+            </td>
+            <td>
+                <a class="btn btn-warning" href="/Request/Edit/@item.RequestId">Edit</a>
+                <a class="btn btn-danger" href="/Request/Delete/@item.RequestId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

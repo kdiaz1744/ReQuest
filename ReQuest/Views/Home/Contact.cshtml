@@ -1,0 +1,27 @@
+﻿@{
+    if (this.User.IsInRole("Admin"))
+    {
+
+        ViewBag.Title = "Contact";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    }
+    else
+    {
+        ViewBag.Title = "Contact";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<address>
+    Inter American University of Puerto Rico - Bayamon Campus<br />
+    500 Dr. John Will Harris Street, Bayamon, PR, USA, 00957<br />
+    <abbr title="Phone">P:</abbr>
+    787.279.1912
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">interbcinfo@bayamon.inter.edu</a><br />
+</address>

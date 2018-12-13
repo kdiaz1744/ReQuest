@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ReQuest.Models.Request>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Pending Requests</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Activity Name</th>
+        <th>Description</th>
+        <th>Room</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr class="cursor-pointer" data-href="/Calendar/Details/@item.RequestId">
+            <td class="clickable-col">
+                @item.RequestName
+            </td>
+            <td class="clickable-col">
+                @item.RequestDescription
+            </td>
+            <td class="clickable-col">
+                @item.RoomNumber
+            </td>
+            <td class="clickable-col">
+                @item.RequestStartTime
+            </td>
+            <td class="clickable-col">
+                @item.RequestEndTime
+            </td>
+            <td class="clickable-col">
+                @item.RequestStatus
+            </td>
+            <td>
+                <a class="btn btn-warning" href="/Calendar/Edit/@item.RequestId">Edit Status</a>
+            </td>
+        </tr>
+    }
+</table>

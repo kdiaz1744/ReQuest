@@ -1,0 +1,52 @@
+﻿@model ReQuest.Models.Request
+
+@if (this.User.IsInRole("Admin"))
+{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+else
+{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Request</h2>
+
+@using (Html.BeginForm("Create", "Request"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.RequestName)
+        @Html.TextBoxFor(m => m.RequestName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RequestDescription)
+        @Html.TextAreaFor(m => m.RequestDescription, new { @class = "form-control" })
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.Rooms.BuildingID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.Rooms.BuildingID, new SelectList(ViewBag.Building, "buildingID", "buildingLetter"), "--Select Building--");
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RoomNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownListFor(m => m.RoomNumber, new SelectList(ViewBag.Room, "roomNumber", "roomNumber"), "--Select Room--");
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RequestStartTime)
+        <input type="datetime-local" name="RequestStartTime" min="2000-01-02"><br>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RequestEndTime)
+        <input type="datetime-local" name="RequestEndTime" min="2000-01-02"><br>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send Request</button>
+}
+
